@@ -8,8 +8,9 @@ Frontend zur Designabstimmung.
 
 | Datei | Inhalt |
 |-------|--------|
-| `index.html` | YBS Hauptseite (Startseite) |
-| `summer-summit.html` | Summer Summit 2026 – Event-Landingpage |
+| `index.html` | **YBS Summer Summit 2026** – Event-Landingpage (öffentliche Startseite der Subdomain) |
+| `hauptseite.html` | YBS Hauptseite (in Reserve – nicht von der Startseite verlinkt) |
+| `summer-summit.html` | Weiterleitung auf `/` (Kompatibilität für alte Links) |
 
 Styles: `styles.css` (Hauptmarke), `summer-summit.css` (Event-Sub-Identität).
 Bilder & Logos liegen unter `assets/`.
