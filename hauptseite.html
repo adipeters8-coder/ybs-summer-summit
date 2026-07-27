@@ -5,9 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Young Business Schmallenberg – Wissen. Netzwerk. Impulse.</title>
   <meta name="description" content="Young Business Schmallenberg (YBS) – das Netzwerk für junge Unternehmerinnen, Unternehmer und Macher im Sauerland. Wissen teilen, Netzwerk aufbauen, gemeinsam etwas bewegen." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Google Fonts werden erst nach Einwilligung geladen (siehe Consent-Banner) -->
+  <script>
+    window.__loadFonts = function () {
+      if (document.getElementById('gfonts')) return;
+      var l = document.createElement('link');
+      l.id = 'gfonts'; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap';
+      document.head.appendChild(l);
+    };
+    try { if (localStorage.getItem('ybs-consent') === 'accepted') window.__loadFonts(); } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="consent.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -380,5 +389,6 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.section, .hero__content').forEach(el => { el.classList.add('reveal'); io.observe(el); });
   </script>
+  <script src="consent.js" defer></script>
 </body>
 </html>

@@ -5,9 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>YBS Summer Summit 2026 – Unternehmertum erleben · 19.09.2026 Schmallenberg</title>
   <meta name="description" content="YBS Summer Summit 2026 – wahrscheinlich das größte Unternehmer-Event im Sauerland. Impulsvorträge, Networking & Party im Alten Sägewerk Schmallenberg. Ehrenamtlich organisiert vom Young Business Schmallenberg e.V." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet" />
+  <!-- Google Fonts werden erst nach Einwilligung geladen (siehe Consent-Banner) -->
+  <script>
+    window.__loadFonts = function () {
+      if (document.getElementById('gfonts')) return;
+      var l = document.createElement('link');
+      l.id = 'gfonts'; l.rel = 'stylesheet';
+      l.href = 'https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap';
+      document.head.appendChild(l);
+    };
+    try { if (localStorage.getItem('ybs-consent') === 'accepted') window.__loadFonts(); } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="consent.css" />
   <link rel="stylesheet" href="summer-summit.css" />
 </head>
 <body>
@@ -486,5 +495,6 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.section').forEach(el => { el.classList.add('reveal'); io.observe(el); });
   </script>
+  <script src="consent.js" defer></script>
 </body>
 </html>
