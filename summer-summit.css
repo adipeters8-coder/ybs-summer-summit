@@ -271,6 +271,25 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .ticket-placeholder-flag{display:inline-block;background:var(--gold);color:var(--ink);font-family:var(--font-head);font-weight:700;text-transform:uppercase;letter-spacing:.04em;font-size:.7rem;padding:4px 10px;margin-bottom:18px}
 @media(max-width:600px){.ticket-row{flex-direction:column;align-items:flex-start;gap:14px}}
 
+/* Kategorien-Überblick */
+.ticket-cats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
+.ticket-cat{display:flex;align-items:center;justify-content:space-between;gap:18px;background:#fff;color:var(--ink);padding:22px 24px;border:1px solid var(--line);transition:transform .2s ease,box-shadow .25s ease}
+.ticket-cat:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(4,26,70,.14)}
+.ticket-cat__info h4{font-family:var(--font-head);font-weight:700;text-transform:uppercase;font-size:1.1rem}
+.ticket-cat__info p{color:var(--grey);font-size:.9rem;margin-top:.35rem;max-width:44ch}
+.ticket-cat__price{font-family:var(--font-head);font-weight:700;font-size:1.55rem;color:var(--blue);white-space:nowrap}
+@media(max-width:600px){.ticket-cats{grid-template-columns:1fr}.ticket-cat{flex-direction:column;align-items:flex-start;gap:10px}}
+
+/* ticket.io Embed (Zwei-Klick-Lösung) */
+.ticketio-embed{background:#fff;border:1px solid var(--line);box-shadow:0 30px 70px rgba(4,26,70,.28);overflow:hidden}
+.ticketio-embed__placeholder{padding:clamp(30px,5vw,52px);text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
+.ticketio-embed__brand{font-family:var(--font-head);font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:.78rem;color:var(--grey-light)}
+.ticketio-embed__brand b{color:var(--blue)}
+.ticketio-embed__placeholder p{color:var(--grey);max-width:56ch;font-size:.96rem}
+.ticketio-embed__ext{font-size:.85rem;color:var(--blue);text-decoration:underline}
+.ticketio-embed__ext:hover{color:var(--blue-2)}
+.ticketio-embed iframe{width:100%;min-height:1100px;border:0;display:block}
+
 /* ============================================================
    SPONSOREN
    ============================================================ */

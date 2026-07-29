@@ -214,7 +214,7 @@
     </div>
   </section>
 
-  <!-- ===== TICKETS (ticket.io Platzhalter) ===== -->
+  <!-- ===== TICKETS (ticket.io Embed – Zwei-Klick-Lösung) ===== -->
   <section class="section section--blue section--dots" id="tickets">
     <div class="container section__inner">
       <div class="section__head" style="text-align:center;max-width:680px;margin-inline:auto">
@@ -224,46 +224,35 @@
       </div>
 
       <div class="tickets__wrap">
-        <span class="ticket-placeholder-flag">Vorschau · Platzhalter-Einbindung ticket.io</span>
-        <!-- ticket.io Widget-Platzhalter: wird später durch echtes Embed ersetzt -->
-        <div class="ticket-widget" id="ticket-widget">
-          <div class="ticket-widget__head">
-            <h3>YBS Summer Summit 2026</h3>
-            <span class="ticket-widget__brand">powered by <b>ticket.io</b></span>
+        <!-- Kategorien-Überblick (nativ, immer sichtbar) -->
+        <div class="ticket-cats">
+          <div class="ticket-cat">
+            <div class="ticket-cat__info">
+              <h4>Regulär</h4>
+              <p>Voller Zugang zum Summit – Vorträge, Networking, Party. Catering vom GOODFOOD Foodtruck ist drin, Getränke gibt's vor Ort.</p>
+            </div>
+            <div class="ticket-cat__price">24,99&nbsp;€</div>
           </div>
-
-          <div class="ticket-row" data-price="0">
-            <div class="ticket-row__info">
-              <h4>Standard-Ticket</h4>
-              <p>Alles dabei: Vorträge, Networking, Party. Und das Streetfood vom Foodtruck obendrauf – mehr brauchst du nicht.</p>
-              <span class="ticket-row__price">–,– €&nbsp; <small>Preis folgt</small></span>
+          <div class="ticket-cat">
+            <div class="ticket-cat__info">
+              <h4>Schüler &amp; Studierende</h4>
+              <p>Gleicher Abend, kleinerer Preis. Gültigen Ausweis am Einlass nicht vergessen. Catering? Selbstverständlich auch inklusive.</p>
             </div>
-            <div class="stepper" data-stepper>
-              <button type="button" data-dec aria-label="weniger">−</button>
-              <input type="text" value="0" readonly aria-label="Anzahl Standard-Tickets" />
-              <button type="button" data-inc aria-label="mehr">+</button>
-            </div>
-          </div>
-
-          <div class="ticket-row" data-price="0">
-            <div class="ticket-row__info">
-              <h4>Support-Ticket</h4>
-              <p>Alles wie beim Standard-Ticket. Plus ein kleiner Extra-Beitrag, freiwillig, mit dem du dem ehrenamtlichen Verein unter die Arme greifst.</p>
-              <span class="ticket-row__price">–,– €&nbsp; <small>Preis folgt</small></span>
-            </div>
-            <div class="stepper" data-stepper>
-              <button type="button" data-dec aria-label="weniger">−</button>
-              <input type="text" value="0" readonly aria-label="Anzahl Support-Tickets" />
-              <button type="button" data-inc aria-label="mehr">+</button>
-            </div>
-          </div>
-
-          <div class="ticket-widget__foot">
-            <div class="ticket-widget__total">Gesamt: <b id="ticket-total">0</b> Ticket(s)</div>
-            <button class="btn btn--gold" id="ticket-checkout" type="button">Weiter zur Kasse</button>
+            <div class="ticket-cat__price">14,99&nbsp;€</div>
           </div>
         </div>
-        <p class="ticket-note">Sobald der Verkauf startet, öffnet sich hier das echte Buchungsfenster von ticket.io. Und noch mal zur Erinnerung: Der Preis? Deckt exakt das Catering.</p>
+
+        <!-- ticket.io Shop – DSGVO: erst auf Klick laden (Zwei-Klick-Lösung) -->
+        <div class="ticketio-embed" id="ticketio-embed">
+          <div class="ticketio-embed__placeholder">
+            <div class="ticketio-embed__brand">Ticketshop · powered by <b>ticket.io</b></div>
+            <p>Der Ticketkauf läuft sicher über <strong>ticket.io</strong>. Aus Datenschutzgründen laden wir den Shop erst, wenn du es möchtest – dabei werden Daten an ticket.io übertragen.</p>
+            <button type="button" class="btn btn--gold" data-load-ticketio>Ticketshop laden &amp; Tickets kaufen</button>
+            <a class="ticketio-embed__ext" href="https://saegewerk.ticket.io/PoehPkMO/" target="_blank" rel="noopener noreferrer">oder direkt bei ticket.io öffnen →</a>
+          </div>
+        </div>
+
+        <p class="ticket-note">Sichere Bezahlung und Ticketversand laufen direkt über ticket.io. Und zur Erinnerung: Der Ticketpreis fließt ins Catering – Gewinn machen wir damit keinen.</p>
       </div>
     </div>
   </section>
@@ -463,20 +452,26 @@
     modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeModal));
     document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(); });
 
-    /* ---- Ticket-Platzhalter Stepper ---- */
-    const updateTotal = () => {
-      let total = 0;
-      document.querySelectorAll('.stepper input').forEach(i => total += parseInt(i.value || '0', 10));
-      document.getElementById('ticket-total').textContent = total;
-    };
-    document.querySelectorAll('[data-stepper]').forEach(st => {
-      const input = st.querySelector('input');
-      st.querySelector('[data-inc]').addEventListener('click', () => { input.value = Math.min(20, (+input.value)+1); updateTotal(); });
-      st.querySelector('[data-dec]').addEventListener('click', () => { input.value = Math.max(0, (+input.value)-1); updateTotal(); });
-    });
-    document.getElementById('ticket-checkout').addEventListener('click', () => {
-      alert('Vorschau: Hier öffnet sich später das echte ticket.io-Buchungsfenster.');
-    });
+    /* ---- ticket.io Shop: DSGVO-konform erst auf Klick laden ---- */
+    (function () {
+      const embed = document.getElementById('ticketio-embed');
+      if (!embed) return;
+      const SHOP = 'https://saegewerk.ticket.io/PoehPkMO/';
+      const load = () => {
+        const f = document.createElement('iframe');
+        f.src = SHOP;
+        f.title = 'YBS Summer Summit 2026 – Ticketshop (ticket.io)';
+        f.loading = 'lazy';
+        f.setAttribute('allow', 'payment');
+        f.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+        embed.innerHTML = '';
+        embed.appendChild(f);
+        embed.classList.add('is-loaded');
+      };
+      const btn = embed.querySelector('[data-load-ticketio]');
+      if (btn) btn.addEventListener('click', () => { try { localStorage.setItem('ybs-ticketio', 'loaded'); } catch (e) {} load(); });
+      try { if (localStorage.getItem('ybs-ticketio') === 'loaded') load(); } catch (e) {}
+    })();
 
     /* ---- Header solid on scroll ---- */
     const header = document.querySelector('.site-header');
