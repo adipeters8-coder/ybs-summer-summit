@@ -140,10 +140,10 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 /* Mikro: ragt von rechts herein, am Bildrand abgeschnitten – der Fokus */
 .hero__graphic--mic{right:-7%;top:-3%;width:clamp(240px,32vw,460px);transform:rotate(3deg)}
 /* Aperol: ragt von links herein (gespiegelt), am Bildrand abgeschnitten – kleiner & tiefer */
-.hero__graphic--aperol{left:-1%;bottom:0;width:clamp(155px,20vw,280px);transform:scaleX(-1) rotate(4deg)}
+.hero__graphic--aperol{left:0;bottom:0;width:clamp(155px,20vw,280px);transform:scaleX(-1)}
 @media(max-width:820px){
-  .hero__graphic--mic{width:clamp(150px,34vw,240px);top:2%;right:-4%;opacity:.85}
-  .hero__graphic--aperol{width:clamp(110px,25vw,170px);bottom:1%;left:-3%;opacity:.85}
+  .hero__graphic--mic{width:clamp(150px,34vw,240px);top:2%;right:0;opacity:.85}
+  .hero__graphic--aperol{width:clamp(110px,25vw,170px);bottom:1%;left:0;opacity:.85}
 }
 @media(max-width:560px){.hero__graphic--mic{opacity:.35}.hero__graphic--aperol{opacity:.4}}
 
@@ -398,8 +398,8 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
    ============================================================ */
 /* 3 · Striche neben Überschriften entfernen */
 .bar{display:none}
-/* 3 · Über-Überschriften (Eyebrows) in Akzentfarbe */
-.eyebrow,.eyebrow--ink{color:var(--orange)}
+/* 3 · Über-Überschriften wie die Buttons (Gold-Badge) */
+.eyebrow,.eyebrow--ink{background:var(--gold);color:var(--ink);padding:8px 15px;font-weight:800;letter-spacing:.06em;line-height:1}
 .modal__role{color:var(--orange)}
 .speaker-card__talk-label{color:var(--gold-2)}
 /* 3 · Alle Überschriften Font-Weight 800 */
@@ -415,9 +415,9 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
   text-transform:uppercase;font-size:clamp(1.15rem,2.6vw,1.9rem);letter-spacing:.01em;line-height:1.1;padding:8px 18px;margin:2px 0 22px}
 .hero__facts{flex-direction:column;gap:12px;align-items:center;margin:22px 0 30px;font-size:1rem;letter-spacing:0}
 .hero__facts span{text-transform:none}
-/* 1 · Mikro: oben nie angeschnitten, sichtbarer & tiefer, seitlich leicht angeschnitten */
-.hero__graphic--mic{top:160px;right:-1%;width:clamp(210px,27vw,400px);transform:rotate(3deg)}
-@media(max-width:820px){.hero__graphic--mic{top:120px;right:-4%;width:clamp(140px,30vw,220px)}}
+/* 1 · Mikro: Arm bündig am rechten Rand (gerade geschnitten), tiefer & sichtbar */
+.hero__graphic--mic{top:160px;right:0;width:clamp(210px,27vw,400px);transform:none}
+@media(max-width:820px){.hero__graphic--mic{top:120px;right:0;width:clamp(140px,30vw,220px)}}
 
 /* 6 · TIMELINE: Verlaufslinie, Punkte zentriert & pulsierend, keine dunklen Kästen */
 .timeline{border-left:none;position:relative}
@@ -458,9 +458,35 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .tier-premium .sponsor img{max-height:52px;max-width:76%}
 .tier-basic .sponsor img{max-height:40px;max-width:74%}
 
-/* 12 · VORSTAND: freigestelltes Bild unten angeschnitten + Handschriften */
-.vorstand__media{position:relative;overflow:hidden;height:clamp(420px,46vw,540px);display:flex;align-items:flex-start;justify-content:center;background:transparent}
-.vorstand__media img{width:100%;max-width:520px;height:auto;aspect-ratio:auto;object-fit:contain;object-position:top center;display:block;filter:drop-shadow(0 14px 30px rgba(0,0,0,.3))}
+/* 12 · VORSTAND: volles freigestelltes Bild, unten bündig zum Footer */
+.vorstand-section{padding-bottom:0!important;overflow:hidden}
+.vorstand__grid{align-items:end}
+.vorstand__msg{align-self:center;padding-bottom:clamp(48px,7vw,80px)}
+.vorstand__media{align-self:end;display:flex;justify-content:center;background:transparent}
+.vorstand__media img{width:100%;max-width:560px;height:auto;aspect-ratio:auto;object-fit:contain;object-position:bottom;display:block;margin-bottom:0;filter:drop-shadow(0 14px 30px rgba(0,0,0,.3))}
+@media(max-width:820px){.vorstand__msg{align-self:auto;padding-bottom:0}.vorstand__media{max-width:520px;margin-inline:auto}}
+
+/* ============================================================
+   FOTO-HINTERGRUND-SEKTIONEN (Event + Über YBS)
+   ============================================================ */
+.section--photo{position:relative;color:#fff;background-size:cover;background-position:center;isolation:isolate}
+.section--photo::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(158deg,rgba(9,44,110,.86),rgba(8,52,128,.9) 55%,rgba(6,40,104,.94)),
+  radial-gradient(rgba(255,255,255,.11) 1.4px,transparent 1.5px);
+  background-size:100% 100%,26px 26px}
+.section--photo .section__inner{position:relative;z-index:1}
+.intro__solo,.about__solo{max-width:860px}
+.section--photo .intro__text p,.section--photo .about__text p{color:#e8eef8}
+.section--photo .intro__text .highlight,.section--photo .section-title{color:#fff}
+.section--photo .about__facts li{color:#fff}
+.section--photo .about__facts li::before{background:var(--gold-2)}
+/* Über YBS: größeres Logo + mehr Abstand Überschrift→Text */
+.about__logo{height:82px;margin-bottom:24px}
+.about__title{margin-bottom:1.1rem}
+@media(max-width:520px){.about__logo{height:64px}}
+/* Logo im Footer größer */
+.footer__brand > img:first-child{height:56px}
+
 .sign--merle .sign__name{font-family:'Caveat',cursive;font-size:2.6rem}
 .sign--dominik .sign__name{font-family:'Dancing Script',cursive;font-size:2.2rem}
 .sign--adrian .sign__name{font-family:'Shadows Into Light',cursive;font-size:2rem}
