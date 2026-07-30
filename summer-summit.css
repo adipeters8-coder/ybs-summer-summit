@@ -120,7 +120,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .hero__dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.22) 1.6px, transparent 1.7px);background-size:28px 28px;
   mask-image:radial-gradient(120% 80% at 70% 0%,#000,transparent 70%);-webkit-mask-image:radial-gradient(120% 80% at 70% 0%,#000,transparent 70%)}
 .hero__glow{position:absolute;inset:0;background:radial-gradient(60% 50% at 80% 15%,rgba(255,255,255,.18),transparent 60%)}
-.hero__inner{position:relative;z-index:2;padding-block:130px 90px;width:100%}
+.hero__inner{position:relative;z-index:2;padding-block:130px 90px;width:100%;display:flex;flex-direction:column;align-items:center;text-align:center}
 .hero__badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.25);
   font-family:var(--font-head);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:.72rem;padding:8px 14px;margin-bottom:26px}
 .hero__badge b{color:var(--gold-2)}
@@ -131,7 +131,7 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .hero__facts{display:flex;flex-wrap:wrap;gap:14px 32px;margin:30px 0 32px;font-family:var(--font-head);font-weight:700;text-transform:uppercase;letter-spacing:.02em;font-size:.98rem}
 .hero__facts span{display:inline-flex;align-items:center;gap:9px}
 .hero__facts .dot{width:8px;height:8px;background:var(--gold);flex:none}
-.hero__actions{display:flex;flex-wrap:wrap;gap:14px}
+.hero__actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
 .hero__scroll{position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:2;color:rgba(255,255,255,.7);font-size:.72rem;text-transform:uppercase;letter-spacing:.2em;font-family:var(--font-head);display:flex;flex-direction:column;align-items:center;gap:8px}
 .hero__scroll::after{content:"";width:1px;height:34px;background:rgba(255,255,255,.5);animation:scrolldown 1.8s ease-in-out 6}
 @keyframes scrolldown{0%,100%{transform:scaleY(.4);transform-origin:top;opacity:.4}50%{transform:scaleY(1);opacity:1}}
@@ -140,10 +140,10 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 /* Mikro: ragt von rechts herein, am Bildrand abgeschnitten – der Fokus */
 .hero__graphic--mic{right:-7%;top:-3%;width:clamp(240px,32vw,460px);transform:rotate(3deg)}
 /* Aperol: ragt von links herein (gespiegelt), am Bildrand abgeschnitten – kleiner & tiefer */
-.hero__graphic--aperol{left:-5%;bottom:-4%;width:clamp(140px,18vw,250px);transform:scaleX(-1) rotate(4deg)}
+.hero__graphic--aperol{left:-1%;bottom:0;width:clamp(155px,20vw,280px);transform:scaleX(-1) rotate(4deg)}
 @media(max-width:820px){
-  .hero__graphic--mic{width:clamp(150px,34vw,240px);top:2%;right:-9%;opacity:.85}
-  .hero__graphic--aperol{width:clamp(100px,24vw,150px);bottom:1%;left:-8%;opacity:.85}
+  .hero__graphic--mic{width:clamp(150px,34vw,240px);top:2%;right:-4%;opacity:.85}
+  .hero__graphic--aperol{width:clamp(110px,25vw,170px);bottom:1%;left:-3%;opacity:.85}
 }
 @media(max-width:560px){.hero__graphic--mic{opacity:.35}.hero__graphic--aperol{opacity:.4}}
 
@@ -413,11 +413,11 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 /* 1 · HERO: Slogan-Box (Plakat-Look) + kompakte Eckdaten */
 .hero__slogan{display:inline-block;background:#fff;color:var(--blue);font-family:var(--font-head);font-weight:800;
   text-transform:uppercase;font-size:clamp(1.15rem,2.6vw,1.9rem);letter-spacing:.01em;line-height:1.1;padding:8px 18px;margin:2px 0 22px}
-.hero__facts{flex-direction:column;gap:12px;align-items:flex-start;margin:22px 0 30px;font-size:1rem;letter-spacing:0}
+.hero__facts{flex-direction:column;gap:12px;align-items:center;margin:22px 0 30px;font-size:1rem;letter-spacing:0}
 .hero__facts span{text-transform:none}
-/* 1 · Mikro: oben nie angeschnitten, nur seitlich */
-.hero__graphic--mic{top:92px;right:-6%;width:clamp(190px,25vw,360px);transform:rotate(3deg)}
-@media(max-width:820px){.hero__graphic--mic{top:82px;right:-11%;width:clamp(135px,32vw,210px)}}
+/* 1 · Mikro: oben nie angeschnitten, sichtbarer & tiefer, seitlich leicht angeschnitten */
+.hero__graphic--mic{top:160px;right:-1%;width:clamp(210px,27vw,400px);transform:rotate(3deg)}
+@media(max-width:820px){.hero__graphic--mic{top:120px;right:-4%;width:clamp(140px,30vw,220px)}}
 
 /* 6 · TIMELINE: Verlaufslinie, Punkte zentriert & pulsierend, keine dunklen Kästen */
 .timeline{border-left:none;position:relative}
