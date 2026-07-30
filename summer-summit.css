@@ -444,14 +444,20 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 
 /* 9 · CATERING: Menü-Karten + Produktinfos */
 .menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:1.4rem 0}
-.menu-item{background:#fff;border:1px solid var(--line);padding:22px 20px}
-.menu-item__ico{font-size:1.8rem}
-.menu-item h4{font-family:var(--font-head);text-transform:uppercase;font-size:1.02rem;margin:.5rem 0 .4rem}
+.menu-item{background:#fff;border:1px solid var(--line);padding:22px 22px 24px;display:flex;flex-direction:column}
+.menu-item__img{height:118px;width:auto;max-width:70%;object-fit:contain;object-position:left center;margin:0 0 .8rem;display:block;mix-blend-mode:multiply}
+.menu-item h4{font-family:var(--font-head);font-weight:800;text-transform:uppercase;font-size:1.05rem;color:var(--ink);margin:0 0 .4rem}
 .menu-item p{color:var(--grey);font-size:.9rem}
-.menu-info{list-style:none;display:grid;gap:9px;margin-top:.6rem}
-.menu-info li{position:relative;padding-left:24px;color:#dfe7f5;font-size:.92rem}
-.menu-info li::before{content:"";position:absolute;left:0;top:.55em;width:11px;height:2px;background:var(--gold)}
-@media(max-width:760px){.menu-grid{grid-template-columns:1fr}}
+@media(max-width:760px){.menu-grid{grid-template-columns:1fr}.menu-item__img{max-width:150px}}
+
+/* GOODFOOD Benefits als Kachel-Grid mit Icons */
+.benefits{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:clamp(28px,4vw,40px)}
+.benefit{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);padding:24px 16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;transition:background .25s ease,transform .25s ease}
+.benefit:hover{background:rgba(255,255,255,.11);transform:translateY(-3px)}
+.benefit svg{width:34px;height:34px;color:var(--gold-2);flex:none}
+.benefit p{color:#e8eef8;font-size:.86rem;line-height:1.4;margin:0}
+@media(max-width:900px){.benefits{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.benefits{grid-template-columns:1fr}.benefit{flex-direction:row;text-align:left;gap:14px}}
 
 /* 11 · SPONSOREN: getrimmte Logos, einheitliche Höhe je Stufe */
 .tier-main .sponsor img{max-height:72px;max-width:80%}
@@ -481,9 +487,9 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .section--photo .about__facts li{color:#fff}
 .section--photo .about__facts li::before{background:var(--gold-2)}
 /* Über YBS: größeres Logo + mehr Abstand Überschrift→Text */
-.about__logo{height:104px;margin-bottom:26px}
+.about__logo{height:78px;margin-bottom:26px}
 .about__title{margin-bottom:1.1rem}
-@media(max-width:520px){.about__logo{height:78px}}
+@media(max-width:520px){.about__logo{height:60px}}
 /* Logo im Footer größer */
 .footer__brand > img:first-child{height:56px}
 
