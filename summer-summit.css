@@ -398,9 +398,9 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
    ============================================================ */
 /* 3 · Striche neben Überschriften entfernen */
 .bar{display:none}
-/* 3 · Über-Überschriften wie die Buttons (Gold-Badge) */
-.eyebrow,.eyebrow--ink{background:var(--gold);color:var(--ink);padding:8px 15px;font-weight:800;letter-spacing:.06em;line-height:1}
-.modal__role{color:var(--orange)}
+/* 3 · Über-Überschriften: Text in Button-Farbton (Gold) */
+.eyebrow,.eyebrow--ink{color:var(--gold)}
+.modal__role{color:var(--gold)}
 .speaker-card__talk-label{color:var(--gold-2)}
 /* 3 · Alle Überschriften Font-Weight 800 */
 .section-title,.speaker-card__name,.modal__name,.audience__card h4,.timeline__item h4,
@@ -481,9 +481,9 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .section--photo .about__facts li{color:#fff}
 .section--photo .about__facts li::before{background:var(--gold-2)}
 /* Über YBS: größeres Logo + mehr Abstand Überschrift→Text */
-.about__logo{height:82px;margin-bottom:24px}
+.about__logo{height:104px;margin-bottom:26px}
 .about__title{margin-bottom:1.1rem}
-@media(max-width:520px){.about__logo{height:64px}}
+@media(max-width:520px){.about__logo{height:78px}}
 /* Logo im Footer größer */
 .footer__brand > img:first-child{height:56px}
 
