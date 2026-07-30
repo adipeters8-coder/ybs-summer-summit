@@ -471,7 +471,11 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .vorstand__msg{align-self:center;padding-bottom:clamp(48px,7vw,80px)}
 .vorstand__media{align-self:end;display:flex;justify-content:center;background:transparent}
 .vorstand__media img{width:100%;max-width:560px;height:auto;aspect-ratio:auto;object-fit:contain;object-position:bottom;display:block;margin-bottom:0;filter:drop-shadow(0 14px 30px rgba(0,0,0,.3))}
-@media(max-width:820px){.vorstand__msg{align-self:auto;padding-bottom:0}.vorstand__media{max-width:520px;margin-inline:auto}}
+@media(max-width:820px){
+  .vorstand-section{padding-bottom:clamp(48px,11vw,80px)!important}
+  .vorstand__msg{align-self:auto;padding-bottom:0}
+  .vorstand__media{max-width:520px;margin-inline:auto}
+}
 
 /* ============================================================
    FOTO-HINTERGRUND-SEKTIONEN (Event + Über YBS)
