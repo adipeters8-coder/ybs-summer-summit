@@ -517,3 +517,6 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 /* Abstand zwischen Event- und YBS-Sektion angleichen (kleiner) */
 #event{padding-bottom:clamp(28px,4vw,52px)}
 #ueber-ybs{padding-top:clamp(28px,4vw,52px)}
+/* Abstand Catering ↔ Tickets verkleinern (durchgehender blauer Block) */
+#catering{padding-bottom:clamp(28px,4vw,52px)}
+#tickets{padding-top:clamp(28px,4vw,52px)}
