@@ -475,6 +475,7 @@
         <nav class="footer__legal">
           <a href="https://youngbusiness-schmallenberg.de/impressum/" target="_blank" rel="noopener noreferrer">Impressum</a>
           <a href="https://youngbusiness-schmallenberg.de/datenschutz/" target="_blank" rel="noopener noreferrer">Datenschutz</a>
+          <a href="#" onclick="if(window.__openConsent){window.__openConsent();}return false;">Cookie-Einstellungen</a>
         </nav>
       </div>
     </div>
@@ -596,6 +597,6 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.section').forEach(el => { el.classList.add('reveal'); io.observe(el); });
   </script>
-  <script src="consent.js" defer></script>
+  <script src="consent.js?v=2" defer></script>
 </body>
 </html>

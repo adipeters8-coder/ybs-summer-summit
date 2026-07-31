@@ -1,24 +1,54 @@
 /* ============================================================
    YBS – Consent-Logik (DSGVO)
-   Zeigt den Banner nur, wenn noch keine Entscheidung vorliegt.
+   Banner erscheint, wenn noch keine Entscheidung vorliegt.
    "Akzeptieren"  -> Google Fonts (window.__loadFonts) und Google
                      Analytics (window.__loadAnalytics) laden
-   "Ablehnen"     -> System-Schriftarten, kein Analytics
-   Die Entscheidung wird in localStorage gespeichert (kein Cookie,
-   kein Tracking – nur der Consent-Status selbst).
+   "Ablehnen"     -> System-Schriftarten, kein Analytics; GA wird
+                     deaktiviert und GA-Cookies werden entfernt
+   window.__openConsent() öffnet den Banner erneut (Widerruf /
+   Änderung, z. B. über den Footer-Link "Cookie-Einstellungen").
+   Die Entscheidung wird in localStorage gespeichert.
    ============================================================ */
 (function () {
   var KEY = 'ybs-consent';
-  var decision = null;
-  try { decision = localStorage.getItem(KEY); } catch (e) {}
+  var GA = window.__GA_ID || '';
 
-  // Fonts wurden bei "accepted" bereits vom Inline-Head-Script geladen.
-  if (decision === 'accepted' || decision === 'declined') return;
-
+  function get() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
   function store(val) { try { localStorage.setItem(KEY, val); } catch (e) {} }
 
+  function deleteGaCookies() {
+    try {
+      var host = location.hostname;
+      var domains = [host, '.' + host];
+      var parts = host.split('.');
+      if (parts.length > 2) domains.push('.' + parts.slice(-2).join('.'));
+      document.cookie.split(';').forEach(function (c) {
+        var name = c.split('=')[0].trim();
+        if (name === '_ga' || name.indexOf('_ga_') === 0 || name === '_gid' || name === '_gat') {
+          document.cookie = name + '=; Max-Age=0; path=/';
+          domains.forEach(function (d) {
+            document.cookie = name + '=; Max-Age=0; path=/; domain=' + d;
+          });
+        }
+      });
+    } catch (e) {}
+  }
+
+  function apply(val) {
+    if (val === 'accepted') {
+      if (GA) window['ga-disable-' + GA] = false;
+      if (typeof window.__loadFonts === 'function') window.__loadFonts();
+      if (typeof window.__loadAnalytics === 'function') window.__loadAnalytics();
+    } else if (val === 'declined') {
+      if (GA) window['ga-disable-' + GA] = true; // stoppt GA, falls in dieser Sitzung geladen
+      deleteGaCookies();
+    }
+  }
+
+  var bar = null;
   function build() {
-    var bar = document.createElement('div');
+    if (bar) { bar.classList.add('is-visible'); return; }
+    bar = document.createElement('div');
     bar.className = 'consent';
     bar.setAttribute('role', 'dialog');
     bar.setAttribute('aria-label', 'Datenschutz-Einstellungen');
@@ -46,18 +76,21 @@
       if (!btn) return;
       var val = btn.getAttribute('data-consent');
       store(val);
-      if (val === 'accepted') {
-        if (typeof window.__loadFonts === 'function') window.__loadFonts();
-        if (typeof window.__loadAnalytics === 'function') window.__loadAnalytics();
-      }
+      apply(val);
       bar.classList.remove('is-visible');
-      setTimeout(function () { bar.remove(); }, 400);
+      setTimeout(function () { if (bar) { bar.remove(); bar = null; } }, 400);
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', build);
-  } else {
-    build();
+  // Öffentlich: Banner erneut öffnen (Widerruf / Einstellungen ändern)
+  window.__openConsent = function () {
+    if (document.body) build();
+    else document.addEventListener('DOMContentLoaded', build);
+  };
+
+  var decision = get();
+  if (decision !== 'accepted' && decision !== 'declined') {
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', build);
+    else build();
   }
 })();
