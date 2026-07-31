@@ -1,8 +1,9 @@
 /* ============================================================
    YBS – Consent-Logik (DSGVO)
    Zeigt den Banner nur, wenn noch keine Entscheidung vorliegt.
-   "Akzeptieren"  -> externe Schriftarten laden (window.__loadFonts)
-   "Ablehnen"     -> System-Schriftarten, keine externe Anfrage
+   "Akzeptieren"  -> Google Fonts (window.__loadFonts) und Google
+                     Analytics (window.__loadAnalytics) laden
+   "Ablehnen"     -> System-Schriftarten, kein Analytics
    Die Entscheidung wird in localStorage gespeichert (kein Cookie,
    kein Tracking – nur der Consent-Status selbst).
    ============================================================ */
@@ -20,14 +21,16 @@
     var bar = document.createElement('div');
     bar.className = 'consent';
     bar.setAttribute('role', 'dialog');
-    bar.setAttribute('aria-label', 'Hinweis zu externen Schriftarten');
+    bar.setAttribute('aria-label', 'Datenschutz-Einstellungen');
     bar.innerHTML =
       '<div class="consent__inner">' +
         '<div class="consent__text">' +
-          '<div class="consent__title">Externe Schriftarten</div>' +
-          '<p>Für die vorgesehene Darstellung laden wir Schriftarten von Google Fonts. ' +
-          'Dabei wird deine IP-Adresse an Google übertragen. Ohne Zustimmung nutzen wir ' +
-          'System-Schriftarten – die Seite funktioniert dann uneingeschränkt. ' +
+          '<div class="consent__title">Datenschutz-Einstellungen</div>' +
+          '<p>Wir laden Schriftarten von Google Fonts und nutzen Google Analytics, um anonyme ' +
+          'Statistiken über die Nutzung dieser Seite zu erhalten. Dabei werden Daten ' +
+          '(u.&nbsp;a. deine IP-Adresse) an Google übertragen und Cookies gesetzt. Das passiert nur mit deiner ' +
+          'Zustimmung. Ohne Zustimmung nutzen wir System-Schriftarten und kein Analytics – die ' +
+          'Seite funktioniert uneingeschränkt. ' +
           'Mehr dazu in der <a href="https://youngbusiness-schmallenberg.de/datenschutz/" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>.</p>' +
         '</div>' +
         '<div class="consent__actions">' +
@@ -43,8 +46,9 @@
       if (!btn) return;
       var val = btn.getAttribute('data-consent');
       store(val);
-      if (val === 'accepted' && typeof window.__loadFonts === 'function') {
-        window.__loadFonts();
+      if (val === 'accepted') {
+        if (typeof window.__loadFonts === 'function') window.__loadFonts();
+        if (typeof window.__loadAnalytics === 'function') window.__loadAnalytics();
       }
       bar.classList.remove('is-visible');
       setTimeout(function () { bar.remove(); }, 400);

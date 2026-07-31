@@ -16,6 +16,24 @@
     };
     try { if (localStorage.getItem('ybs-consent') === 'accepted') window.__loadFonts(); } catch (e) {}
   </script>
+  <!-- Google Analytics (GA4) – wird erst nach Einwilligung geladen (siehe Consent-Banner) -->
+  <script>
+    // GA4 Measurement-ID
+    window.__GA_ID = 'G-DHWH399LVB';
+    window.__loadAnalytics = function () {
+      var id = window.__GA_ID || '';
+      if (window.__gaLoaded || id.indexOf('G-') !== 0 || id === 'G-XXXXXXXXXX') return;
+      window.__gaLoaded = true;
+      var s = document.createElement('script'); s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', id, { anonymize_ip: true });
+    };
+    try { if (localStorage.getItem('ybs-consent') === 'accepted') window.__loadAnalytics(); } catch (e) {}
+  </script>
   <link rel="stylesheet" href="consent.css" />
   <link rel="stylesheet" href="summer-summit.css" />
 </head>
