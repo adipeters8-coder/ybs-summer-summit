@@ -28,7 +28,7 @@
           '<p>Für die vorgesehene Darstellung laden wir Schriftarten von Google Fonts. ' +
           'Dabei wird deine IP-Adresse an Google übertragen. Ohne Zustimmung nutzen wir ' +
           'System-Schriftarten – die Seite funktioniert dann uneingeschränkt. ' +
-          'Mehr dazu in der <a href="#datenschutz">Datenschutzerklärung</a>.</p>' +
+          'Mehr dazu in der <a href="https://youngbusiness-schmallenberg.de/datenschutz/" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>.</p>' +
         '</div>' +
         '<div class="consent__actions">' +
           '<button type="button" class="consent__btn consent__btn--decline" data-consent="declined">Ablehnen</button>' +
