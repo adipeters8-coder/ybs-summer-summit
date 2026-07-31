@@ -452,13 +452,14 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 @media(max-width:760px){.menu-grid{grid-template-columns:1fr}.menu-item__img{max-width:150px}}
 
 /* GOODFOOD Benefits als Kachel-Grid mit Icons */
-.benefits{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:clamp(28px,4vw,40px)}
-.benefit{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);padding:24px 16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;transition:background .25s ease,transform .25s ease}
+.benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:clamp(28px,4vw,40px)}
+.benefit{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);padding:26px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;transition:background .25s ease,transform .25s ease}
 .benefit:hover{background:rgba(255,255,255,.11);transform:translateY(-3px)}
 .benefit svg{width:34px;height:34px;color:var(--gold-2);flex:none}
-.benefit p{color:#e8eef8;font-size:.86rem;line-height:1.4;margin:0}
+.benefit h4{font-family:var(--font-head);font-weight:800;text-transform:uppercase;font-size:.92rem;letter-spacing:.02em;color:#fff;margin:2px 0 0}
+.benefit p{color:#e8eef8;font-size:.86rem;line-height:1.45;margin:0}
 @media(max-width:900px){.benefits{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:520px){.benefits{grid-template-columns:1fr}.benefit{flex-direction:row;text-align:left;gap:14px}}
+@media(max-width:460px){.benefits{grid-template-columns:1fr}}
 
 /* 11 · SPONSOREN: getrimmte Logos, einheitliche Höhe je Stufe */
 .tier-main .sponsor img{max-height:72px;max-width:80%}
