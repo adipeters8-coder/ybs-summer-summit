@@ -34,6 +34,23 @@
     };
     try { if (localStorage.getItem('ybs-consent') === 'accepted') window.__loadAnalytics(); } catch (e) {}
   </script>
+  <!-- Meta Pixel (Facebook/Instagram) – wird erst nach Einwilligung geladen (siehe Consent-Banner) -->
+  <script>
+    window.__META_PIXEL_ID = '4493540670858181';
+    window.__loadPixel = function () {
+      var id = window.__META_PIXEL_ID || '';
+      if (window.__pixelLoaded || !id) return;
+      window.__pixelLoaded = true;
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', id);
+      fbq('track', 'PageView');
+    };
+    try { if (localStorage.getItem('ybs-consent') === 'accepted') window.__loadPixel(); } catch (e) {}
+  </script>
   <link rel="stylesheet" href="consent.css" />
   <link rel="stylesheet" href="summer-summit.css" />
 </head>
@@ -597,6 +614,6 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.section').forEach(el => { el.classList.add('reveal'); io.observe(el); });
   </script>
-  <script src="consent.js?v=2" defer></script>
+  <script src="consent.js?v=3" defer></script>
 </body>
 </html>
