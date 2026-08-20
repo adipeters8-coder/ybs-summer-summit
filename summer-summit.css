@@ -281,16 +281,6 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 .ticket-cat__price{font-family:var(--font-head);font-weight:700;font-size:1.55rem;color:var(--blue);white-space:nowrap}
 @media(max-width:600px){.ticket-cats{grid-template-columns:1fr}.ticket-cat{flex-direction:column;align-items:flex-start;gap:10px}}
 
-/* ticket.io Embed (Zwei-Klick-Lösung) */
-.ticketio-embed{background:#fff;border:1px solid var(--line);box-shadow:0 30px 70px rgba(4,26,70,.28);overflow:hidden}
-.ticketio-embed__placeholder{padding:clamp(30px,5vw,52px);text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
-.ticketio-embed__brand{font-family:var(--font-head);font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:.78rem;color:var(--grey-light)}
-.ticketio-embed__brand b{color:var(--blue)}
-.ticketio-embed__placeholder p{color:var(--grey);max-width:56ch;font-size:.96rem}
-.ticketio-embed__ext{font-size:.85rem;color:var(--blue);text-decoration:underline}
-.ticketio-embed__ext:hover{color:var(--blue-2)}
-.ticketio-embed iframe{width:100%;min-height:1100px;border:0;display:block}
-
 /* ============================================================
    SPONSOREN
    ============================================================ */
@@ -534,6 +524,28 @@ button{font-family:inherit;cursor:pointer;border:0;background:none}
 /* Abstand Catering ↔ Tickets verkleinern (durchgehender blauer Block) */
 #catering{padding-bottom:clamp(28px,4vw,52px)}
 #tickets{padding-top:clamp(28px,4vw,52px)}
+
+/* Tickets: Vorverkauf-Hinweis (kein Abendkasse) */
+.vvk-note{display:flex;align-items:flex-start;gap:16px;max-width:820px;margin:0 auto 30px;background:rgba(255,255,255,.08);border:2px solid var(--gold);padding:18px 22px}
+.vvk-note svg{width:26px;height:26px;color:var(--gold-2);flex:none;margin-top:2px}
+.vvk-note p{margin:0;color:#fff;font-size:.96rem;line-height:1.5}
+.vvk-note strong{color:var(--gold-2);text-transform:uppercase;letter-spacing:.02em}
+@media(max-width:560px){.vvk-note{padding:16px}}
+
+/* ============================================================
+   Q&A / FAQ
+   ============================================================ */
+.faq{max-width:900px;margin-inline:auto;display:flex;flex-direction:column;gap:14px}
+.faq__item{border:1px solid var(--line);background:#fff}
+.faq__item summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:26px 30px;font-family:var(--font-head);font-weight:700;font-size:1.05rem;color:var(--ink);transition:color .2s ease}
+.faq__item summary::-webkit-details-marker{display:none}
+.faq__item summary:hover{color:var(--blue)}
+.faq__icon{flex:none;width:28px;height:28px;border:2px solid var(--gold);color:var(--gold);display:grid;place-items:center;
+  font-family:var(--font-head);font-size:1.2rem;font-weight:700;line-height:1;transition:transform .25s ease,background .25s ease,color .25s ease}
+.faq__item[open] .faq__icon{background:var(--gold);color:var(--ink);transform:rotate(45deg)}
+.faq__item p{color:var(--grey);padding:0 30px 28px;max-width:70ch;font-size:.98rem}
+@media(max-width:560px){.faq__item summary{font-size:.98rem;padding:20px 22px}.faq__item p{padding:0 22px 24px}}
 
 /* LOCATION-Sektion */
 .location__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,60px);align-items:center}
